@@ -77,7 +77,7 @@ public class RSAEncryptRequestFilter extends ZuulFilter {
 			return false;
 		}
 		// 获取访问令牌
-		String accessToken = baseParamDTO.getAccesToken();
+		String accessToken = baseParamDTO.getAccessToken();
 		// 如果访问令牌为空则启用该过滤器
 		if (StringUtils.isEmpty(accessToken)) {
 			return true;

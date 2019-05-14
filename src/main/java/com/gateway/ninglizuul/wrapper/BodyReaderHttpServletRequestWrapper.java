@@ -78,7 +78,7 @@ public class BodyReaderHttpServletRequestWrapper extends HttpServletRequestWrapp
 		BufferedReader reader = null;
 		try {
 			inputStream = request.getInputStream();
-			reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName("UTF-8")));
+			reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName(RSAEncryptUtil.CHARSET_UTF8)));
 			String line = "";
 			while ((line = reader.readLine()) != null) {
 				sb.append(line);

@@ -42,7 +42,7 @@ public class AESEncryptRequestFilter extends ZuulFilter {
 		HttpServletRequest request = requestContext.getRequest();
 		BaseParamDTO baseParamDTO = BodyReaderHttpServletRequestWrapper.getBaseParamDTO(request);
 		// 获取访问令牌
-		String accessToken = baseParamDTO.getAccesToken();
+		String accessToken = baseParamDTO.getAccessToken();
 		String paramSign = baseParamDTO.getSign();
 		// 获取加密后的密文数据
 		String cipherText = baseParamDTO.getCipher();
@@ -123,7 +123,7 @@ public class AESEncryptRequestFilter extends ZuulFilter {
 		}
 		BaseParamDTO baseParamDTO = BodyReaderHttpServletRequestWrapper.getBaseParamDTO(request);
 		// 获取访问令牌
-		String accessToken = baseParamDTO.getAccesToken();
+		String accessToken = baseParamDTO.getAccessToken();
 		// 如果基本参数为空则不使用该过滤器 访问令牌为空则不启用该过滤器
 		if (baseParamDTO == null || StringUtils.isEmpty(accessToken)) {
 			return false;

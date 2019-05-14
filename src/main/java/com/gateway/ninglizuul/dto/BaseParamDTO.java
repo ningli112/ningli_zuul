@@ -13,7 +13,7 @@ public class BaseParamDTO {
 	/**
 	 * 访问令牌
 	 */
-	private String accesToken;
+	private String accessToken;
 	/**
 	 * 数据签名
 	 */
@@ -47,7 +47,7 @@ public class BaseParamDTO {
 	 */
 	public BaseParamDTO(String cipher, String accesToken, String sign) {
 		this.cipher = cipher;
-		this.accesToken = accesToken;
+		this.accessToken = accesToken;
 		this.sign = sign;
 	}
 
@@ -57,16 +57,16 @@ public class BaseParamDTO {
 	 * @Description: 初始化所有参数
 	 * @param: appId
 	 * @param: cipher
-	 * @param: accesToken
+	 * @param: accessToken
 	 * @param: sign
 	 * @author: 宁黎
 	 *          2019下午3:50:01
 	 * 
 	 */
-	public BaseParamDTO(String appId, String cipher, String accesToken, String sign) {
+	public BaseParamDTO(String appId, String cipher, String accessToken, String sign) {
 		this.appId = appId;
 		this.cipher = cipher;
-		this.accesToken = accesToken;
+		this.accessToken = accessToken;
 		this.sign = sign;
 	}
 
@@ -86,12 +86,12 @@ public class BaseParamDTO {
 		this.cipher = cipher;
 	}
 
-	public String getAccesToken() {
-		return accesToken;
+	public String getAccessToken() {
+		return accessToken;
 	}
 
-	public void setAccesToken(String accesToken) {
-		this.accesToken = accesToken;
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
 	}
 
 	public String getSign() {
