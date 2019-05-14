@@ -1,0 +1,19 @@
+{
+    "properties": [
+        {
+            "name": "encrypt.filter.private-key",
+            "type": "java.lang.String",
+            "description": "配置RSA加密私钥"
+        },
+        {
+            "name": "encrypt.filter.aes-encrypt",
+            "type": "java.lang.Boolean",
+            "description": "是否启用AES加密过滤器，false为不启用，true为启用，默认启用"
+        },
+        {
+            "name": "encrypt.filter.rsa-encrypt",
+            "type": "java.lang.Boolean",
+            "description": "是否启用RSA加密过滤器，false为不启用，true为启用，默认启用"
+        }
+    ]
+}

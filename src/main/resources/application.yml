@@ -1,0 +1,33 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: ningli-zuul
+  redis:
+    host: 192.168.1.21
+    password: 123456
+    port: 6379
+    timeout: 10000
+    database: 0
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+logging:
+  config: classpath:logback-boot.xml
+encrypt:
+  filter:
+    privateKey: classpath:keystore
+    rsaEncrypt: true
+    aesEncrypt: true
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+zuul:
+  routes:
+    test-server:
+      path: /api-user/*

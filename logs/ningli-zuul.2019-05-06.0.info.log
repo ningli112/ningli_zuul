@@ -1,0 +1,30 @@
+2019-05-06 10:16:38,033 INFO (SpringApplication.java:682)- No active profile set, falling back to default profiles: default
+2019-05-06 10:16:40,465 INFO (GenericScope.java:295)- BeanFactory id=a521a4fc-061d-3300-92de-41084223958f
+2019-05-06 10:16:40,599 INFO (PostProcessorRegistrationDelegate.java:330)- Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$f618d112] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-05-06 10:16:41,278 INFO (TomcatWebServer.java:90)- Tomcat initialized with port(s): 8080 (http)
+2019-05-06 10:16:41,417 INFO (DirectJDKLog.java:173)- Starting service [Tomcat]
+2019-05-06 10:16:41,417 INFO (DirectJDKLog.java:173)- Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-05-06 10:16:41,643 INFO (DirectJDKLog.java:173)- Initializing Spring embedded WebApplicationContext
+2019-05-06 10:16:41,643 INFO (ServletWebServerApplicationContext.java:296)- Root WebApplicationContext: initialization completed in 3581 ms
+2019-05-06 10:16:41,928 INFO (URLConfigurationSource.java:122)- To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-05-06 10:16:41,992 INFO (DynamicPropertyFactory.java:281)- DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@31ee2fdb
+2019-05-06 10:16:42,385 INFO (URLConfigurationSource.java:122)- To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-05-06 10:16:42,959 INFO (ExecutorConfigurationSupport.java:171)- Initializing ExecutorService 'applicationTaskExecutor'
+2019-05-06 10:16:43,915 INFO (EndpointLinksResolver.java:59)- Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-05-06 10:16:44,072 INFO (TomcatWebServer.java:204)- Tomcat started on port(s): 8080 (http) with context path ''
+2019-05-06 10:16:44,075 INFO (StartupInfoLogger.java:61)- Started NingliZuulApplication in 10.376 seconds (JVM running for 11.42)
+2019-05-06 10:17:37,359 INFO (SpringApplication.java:682)- No active profile set, falling back to default profiles: default
+2019-05-06 10:17:38,566 INFO (GenericScope.java:295)- BeanFactory id=a521a4fc-061d-3300-92de-41084223958f
+2019-05-06 10:17:38,713 INFO (PostProcessorRegistrationDelegate.java:330)- Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$5be4216b] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-05-06 10:17:39,107 INFO (TomcatWebServer.java:90)- Tomcat initialized with port(s): 8080 (http)
+2019-05-06 10:17:39,130 INFO (DirectJDKLog.java:173)- Starting service [Tomcat]
+2019-05-06 10:17:39,130 INFO (DirectJDKLog.java:173)- Starting Servlet engine: [Apache Tomcat/9.0.19]
+2019-05-06 10:17:39,273 INFO (DirectJDKLog.java:173)- Initializing Spring embedded WebApplicationContext
+2019-05-06 10:17:39,273 INFO (ServletWebServerApplicationContext.java:296)- Root WebApplicationContext: initialization completed in 1895 ms
+2019-05-06 10:17:39,506 INFO (URLConfigurationSource.java:122)- To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-05-06 10:17:39,522 INFO (DynamicPropertyFactory.java:281)- DynamicPropertyFactory is initialized with configuration sources: com.netflix.config.ConcurrentCompositeConfiguration@73d3e555
+2019-05-06 10:17:39,776 INFO (URLConfigurationSource.java:122)- To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2019-05-06 10:17:40,058 INFO (ExecutorConfigurationSupport.java:171)- Initializing ExecutorService 'applicationTaskExecutor'
+2019-05-06 10:17:40,592 INFO (EndpointLinksResolver.java:59)- Exposing 2 endpoint(s) beneath base path '/actuator'
+2019-05-06 10:17:40,673 INFO (TomcatWebServer.java:204)- Tomcat started on port(s): 8080 (http) with context path ''
+2019-05-06 10:17:40,724 INFO (StartupInfoLogger.java:61)- Started NingliZuulApplication in 5.145 seconds (JVM running for 5.613)
