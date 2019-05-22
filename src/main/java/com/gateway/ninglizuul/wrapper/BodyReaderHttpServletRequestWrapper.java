@@ -73,35 +73,16 @@ public class BodyReaderHttpServletRequestWrapper extends HttpServletRequestWrapp
 	 *
 	 */
 	public static String getBodyString(ServletRequest request) {
-		StringBuilder sb = new StringBuilder();
+		String requestBody = null;
 		InputStream inputStream = null;
-		BufferedReader reader = null;
 		try {
 			inputStream = request.getInputStream();
-			reader = new BufferedReader(new InputStreamReader(inputStream, Charset.forName(RSAEncryptUtil.CHARSET_UTF8)));
-			String line = "";
-			while ((line = reader.readLine()) != null) {
-				sb.append(line);
-			}
+			requestBody = StreamUtils.copyToString(inputStream, Charset.forName(RSAEncryptUtil.CHARSET_UTF8));
 		} catch (IOException e) {
-			LOGGER.error("getBodyString出现问题！");
-		} finally {
-			if (reader != null) {
-				try {
-					reader.close();
-				} catch (IOException e) {
-					LOGGER.error("流关闭出现问题！", e);
-				}
-			}
-			if (inputStream != null) {
-				try {
-					inputStream.close();
-				} catch (IOException e) {
-					LOGGER.error("流关闭出现问题！", e);
-				}
-			}
+			LOGGER.error("读取请求体异常");
 		}
-		return sb.toString();
+		return requestBody;
+
 	}
 
 	/**
