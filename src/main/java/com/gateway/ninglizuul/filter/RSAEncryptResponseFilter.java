@@ -82,7 +82,7 @@ public class RSAEncryptResponseFilter extends ZuulFilter {
 		String accessToken = MD5Util.getUUID();
 		// 对称加密秘钥
 		String password = MD5Util.getUUID();
-		// 设置工厂传输数据,此对象里面包含业务传输数据
+		// 设置公共传输数据,此对象里面包含业务传输数据
 		CommonParamDTO commonParamDTO = new CommonParamDTO(password, responseBody);
 		String plainText = JSON.toJSONString(commonParamDTO);
 		try {

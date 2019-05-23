@@ -2,13 +2,35 @@ package com.gateway.ninglizuul.enums.code;
 
 /**
  * @ClassName: BaseJsonReturnCodeEnum
- * @Description:TODO(这里用一句话描述这个类的作用)
+ * @Description:基础返回码枚举类
  * @author: 宁黎
  * @date: 2019年5月13日 下午4:51:53
  */
 public enum BaseJsonReturnCodeEnum {
-	SUCCESS(0, "SUCCESS"), APPID_NO_EXIST(1001, "APPID不存在"), APP_SECRET_ERROR(1002, "APPI Secret错误"),
-	ACCESS_TOKEN_NO_EXIST(1003, "accessToken 不存在"), CIPHERTEXT_DAMAGE(1004, "密文不正确或密文损坏");
+	/**
+	 * 请求成功
+	 */
+	SUCCESS(0, "SUCCESS"),
+	/**
+	 * APPID不存在
+	 */
+	APPID_NO_EXIST(1001, "APPID不存在"),
+	/**
+	 * appkey错误
+	 */
+	APP_SECRET_ERROR(1002, "APPI Secret错误"),
+	/**
+	 * 访问令牌不存在
+	 */
+	ACCESS_TOKEN_NO_EXIST(1003, "accessToken 不存在"),
+	/**
+	 * 密文数据错误或损坏
+	 */
+	CIPHERTEXT_DAMAGE(1004, "密文不正确或密文损坏"),
+	/**
+	 * 服务调用失败
+	 */
+	SERVICE_ERROR(1005, "服务调用出错");
 	/**
 	 * 状态值
 	 */

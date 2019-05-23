@@ -24,6 +24,10 @@ public class BaseJsonReturnDTO<T> {
 	 */
 	private T data;
 
+	public BaseJsonReturnDTO() {
+
+	}
+
 	/**
 	 * 
 	 * @Title: BaseJsonReturnDTO

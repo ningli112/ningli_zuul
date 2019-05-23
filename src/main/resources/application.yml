@@ -4,7 +4,7 @@ spring:
   application:
     name: ningli-zuul
   redis:
-    host: 192.168.1.21
+    host: 192.168.1.123
     password: 123456
     port: 6379
     timeout: 10000
@@ -27,7 +27,10 @@ eureka:
     fetchRegistry: true
     service-url:
       defaultZone: http://localhost:8761/eureka/
+feign:
+  hystrix:
+    enabled: true
 zuul:
   routes:
     test-server:
-      path: /api-user/*
+      path: /user-center/*

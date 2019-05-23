@@ -10,12 +10,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 
+import com.alibaba.fastjson.JSON;
 import com.gateway.ninglizuul.config.filter.EncryptFilterConfig;
+import com.gateway.ninglizuul.dto.BaseJsonReturnDTO;
 import com.gateway.ninglizuul.dto.BaseParamDTO;
+import com.gateway.ninglizuul.dto.CommonParamDTO;
+import com.gateway.ninglizuul.dto.param.UserOpenApiParamDTO;
+import com.gateway.ninglizuul.enums.code.BaseJsonReturnCodeEnum;
 import com.gateway.ninglizuul.enums.code.ClientErrorRequestEnum;
 import com.gateway.ninglizuul.enums.filter.FilterEnum;
 import com.gateway.ninglizuul.exception.encryption.DecrypteException;
 import com.gateway.ninglizuul.exception.encryption.SecretKeyGenerationException;
+import com.gateway.ninglizuul.fegin.UserOpenApiFegin;
 import com.gateway.ninglizuul.util.encryption.RSAEncryptUtil;
 import com.gateway.ninglizuul.wrapper.BodyReaderHttpServletRequestWrapper;
 import com.netflix.zuul.ZuulFilter;
@@ -32,6 +38,8 @@ public class RSAEncryptRequestFilter extends ZuulFilter {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RSAEncryptRequestFilter.class);
 	@Autowired
 	private EncryptFilterConfig encryptFilterConfig;
+	@Autowired
+	private UserOpenApiFegin userOpenApiFegin;
 
 	/**
 	 * 
@@ -76,6 +84,7 @@ public class RSAEncryptRequestFilter extends ZuulFilter {
 		if (StringUtils.isEmpty(appId)) {
 			return false;
 		}
+
 		// 获取访问令牌
 		String accessToken = baseParamDTO.getAccessToken();
 		// 如果访问令牌为空则启用该过滤器
@@ -92,6 +101,8 @@ public class RSAEncryptRequestFilter extends ZuulFilter {
 		HttpServletRequest request = requestContext.getRequest();
 		// 请求体的转换为基本传输参数
 		BaseParamDTO baseParamDTO = BodyReaderHttpServletRequestWrapper.getBaseParamDTO(request);
+		// 重写请求体后不能在通过AES加解密过滤器 参数转换会失败
+		requestContext.set(FilterEnum.AES_REQUEST_FILTER.getKey(), true);
 		// 获取加密后的密文数据
 		String cipherText = baseParamDTO.getCipher();
 		// 私钥存放的文件路径
@@ -118,16 +129,26 @@ public class RSAEncryptRequestFilter extends ZuulFilter {
 			response.setStatus(ClientErrorRequestEnum.SERVER_REFUSED_REQUEST.getErrorCode());
 			response.setCharacterEncoding(RSAEncryptUtil.CHARSET_UTF8);
 			requestContext.setResponseBody(ClientErrorRequestEnum.SERVER_REFUSED_REQUEST.getErrorMsg());
-		} else {
-			// 把解密后的明文重新写入request中
-			requestContext.setRequest(new BodyReaderHttpServletRequestWrapper(request, plainText));
-			// 请求解密过滤器启用了对请求参数解密成功后，响应加密过滤器也要启用
-			requestContext.set(FilterEnum.RSA_RESPONSE_FILTER.getKey(), true);
-			// 重写请求体后不能在通过AES加解密过滤器 参数转换会失败
-			requestContext.set(FilterEnum.AES_RESPONSE_FILTER.getKey(), true);
-
+			return null;
 		}
-
+		// 校验APPID APPKEY
+		CommonParamDTO commonParamDTO = JSON.parseObject(plainText, CommonParamDTO.class);
+		String secretKey = commonParamDTO.getSecretKey();
+		String appId = baseParamDTO.getAppId();
+		UserOpenApiParamDTO openApiDTO = new UserOpenApiParamDTO(appId, secretKey);
+		BaseJsonReturnDTO<String> jsonReturnDTO = userOpenApiFegin.checkAppId(openApiDTO);
+		if (jsonReturnDTO.getCode() != BaseJsonReturnCodeEnum.SUCCESS.getCode()) {
+			requestContext.setSendZuulResponse(false);
+			HttpServletResponse response = requestContext.getResponse();
+			response.setStatus(ClientErrorRequestEnum.SERVER_REFUSED_REQUEST.getErrorCode());
+			response.setCharacterEncoding(RSAEncryptUtil.CHARSET_UTF8);
+			requestContext.setResponseBody(JSON.toJSONString(jsonReturnDTO));
+			return null;
+		}
+		// 把解密后的业务明文重新写入request中
+		requestContext.setRequest(new BodyReaderHttpServletRequestWrapper(request, commonParamDTO.getBusiness()));
+		// 请求解密过滤器启用了对请求参数解密成功后，响应加密过滤器也要启用
+		requestContext.set(FilterEnum.RSA_RESPONSE_FILTER.getKey(), true);
 		return null;
 	}
 

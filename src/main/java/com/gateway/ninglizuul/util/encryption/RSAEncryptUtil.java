@@ -335,7 +335,7 @@ public class RSAEncryptUtil {
 				}
 				out.write(cache, 0, cache.length);
 				i++;
-				offset = i + MAX_DECRYPT_BLOCK;
+				offset = i * MAX_DECRYPT_BLOCK;
 			}
 			byte[] decryptedData = out.toByteArray();
 			out.close();
@@ -364,7 +364,7 @@ public class RSAEncryptUtil {
 	public static void main(String[] args) {
 		String publicKeyStr = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOKQCAuF5vdA/Wos6mGAGaRRJ+h4dulG2nS6lANFYqSFowbBiERP1Xv4YoHk/jb6F2L8L/+PguZPyFNdSfQPjXWVR7Pr5gYmZSOOMGpnGSSNRGPrvvRMJEkCAZRhDosp0My75nvYL8C1zGnMcX1Mi3fCTYu6JuOcH8f6/uGHRprQIDAQAB";
 		String privateKeyStr = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAI4pAIC4Xm90D9aizqYYAZpFEn6Hh26UbadLqUA0VipIWjBsGIRE/Ve/higeT+NvoXYvwv/4+C5k/IU11J9A+NdZVHs+vmBiZlI44wamcZJI1EY+u+9EwkSQIBlGEOiynQzLvme9gvwLXMacxxfUyLd8JNi7om45wfx/r+4YdGmtAgMBAAECgYAkw02x+/vP7r+5zdiK82JWts4Vko7fddr1jId0ZxRxUsygARRGAGFTs9/JuC0Ir/GdUrSm5Yeo18zF1inqFS9Efpb81eyWv0U3JI+otZVUzJNEsZYn1ItRdXRYgxkmRdIZI+gYHUJkcm2a02274WQGsoOUnvwwI/qVK/qgFkp9sQJBAMzFCMMlL79A3Yp0OQg3RzinDcbc+1qdM94rKzfTOUgtJdYk48vGO0uxVh1thMCHxKxZIVSI43X5mehg+Rk5y8MCQQCxuf3btIzXKyjEUrBLqbt56SsaPLQR+XjZBXSPJwHIr9ekjsKj0WQNR03r6pfdky3NxHqkSwoRQrftDDEZ5U3PAkEAlqJ/rqbleAkssFSNO/kGQKvLm7YmheNNK6uQEHInGmx0ABOFK/t41VbwZZeSZ9u4l5y9wyUsRzZFvUfRF3iH5wJAOIXpibVrUYdFaOLPdNDfcg9JCQgjUNAhsgu9HUYPmC7si0Zn+se+ZUa3Ln+mmu6TE60YQCYpZoHskvRcrVqzGwJAO1W//s1jHdRs8gVHUwFJpJdB7LvyEvsnoir1r4tvIvRMIRXOkMixavxjJdRVaB2tU1BQsI0Rx/6NTJ8hi9y9dA==";
-		String plainText = "ningli";
+		String plainText = "{\"secretKey\":\"PABLLDIKHAHOENKJJPELMNFDDMGEFNPL\",\"randomNumber\":\"586487\",\"business\":{\"systemPlateformId\":1,\"companyName\":\"腾讯\"}}";
 		try {
 			PublicKey publicKey = RSAEncryptUtil.loadPublicKeyStr(publicKeyStr);
 
@@ -374,7 +374,7 @@ public class RSAEncryptUtil {
 			System.out.println(encryptStr);
 			System.out.println(decryptStr);
 			String encryptStr1 = RSAEncryptUtil.encrypt(privateKey, plainText);
-			String decryptStr1 = RSAEncryptUtil.decrypt(publicKey, encryptStr1);
+			String decryptStr1 = RSAEncryptUtil.decrypt(publicKey, "TgmbS4GGZi/rYaTqZDQqaxRJ9XRiYSx4yEOH1SALo/PobEgwGASxSAzaS5M4jxBt4P1RIYoTesCpMGgU7C3VT05nC6mlGyANrB7wiJo599+kk2ry6+UoLpwwTnOLpM9n79Jes4wXWPZL5rQ2CMZgkapW7F0fagDK4JPUOFe05Fw=");
 			System.out.println(decryptStr1);
 		} catch (SecretKeyGenerationException e) {
 			e.printStackTrace();
